@@ -1,0 +1,407 @@
+// First method: num % 10 = digit
+// Split the num from right to left into single individual digits
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+int enter_n();
+void ex_97 (int n);
+void ex_98 (int n);
+void ex_99 (int n);
+void ex_100 (int n);
+void ex_101 (int n);
+void ex_100 (int n);
+void ex_102 (int n);
+void ex_103 (int n);
+void ex_104 (int n);
+void ex_105 (int n);
+void ex_106 (int n);
+void ex_107 (int n);
+void ex_108 (int n);
+void  ex_109 (int n);
+void list (int n);
+int main () {
+    int n;
+    n = enter_n();
+    list (n);
+}
+int enter_n() {
+    int n;
+    printf("Please enter positive int: ");
+    scanf("%d", &n);
+    while (!(n > 0)) {
+        printf("Invalid syntax! Please enter again: ");
+        scanf("%d", &n);
+    }
+    return n;
+}
+void ex_97 (int n) {
+    // find the sum and the product of the individual digits split fr. num.
+    int sum = 0, product = 1;
+    int digit;
+    while (n > 0) {
+        digit = n % 10;
+        n = n / 10;
+        sum += digit;
+        product *= digit;
+    }
+    printf("The sum of all idividual digits of num: %d \n", sum);
+    printf("The product of all individual digits of num: %d \n",product);
+}
+void ex_98 (int n){
+    // count the num. of even digits and odd digits split fr. num
+    int digit;
+    int count_even = 0, count_odd = 0;
+    while (n > 0){
+        digit = n % 10;
+        n = n / 10;
+        if (digit % 2 == 0) {
+            count_even += 1;
+        }
+        else {
+            count_odd += 1;
+        }
+    }
+    printf("The number of even digits split fr. %d: %d \n", n, count_even);
+    printf("The number of odd digits split fr. %d: %d \n", n, count_odd);
+}
+void ex_99 (int n) {
+    // find sum and the product of even digits as well as odd digits split fr. nu
+    int digit;
+    int sum_even = 0, product_even = 1, sum_odd = 0, product_odd = 1;
+    while (n > 0) {
+        digit = n % 10;
+        n = n/ 10;
+        if (digit % 2 == 0) {
+            sum_even += digit;
+            product_even *= digit;
+        }
+        else {
+            sum_odd += digit;
+            product_odd *= digit;
+        }
+    }
+    printf("The sum of even digits: %d \n", sum_even);
+    printf("The sum of odd digits: %d \n", sum_odd);
+    printf("The product of even digits: %d \n", product_even);
+    printf("The prodcut of odd digits: %d \n", product_odd);
+}
+void ex_100 (int n) {
+    // find the largest digit among indivi. digits split fr. num
+    int digit;
+    int max = 0;
+    while (n > 0) {
+        digit = n  % 10;
+        n = n / 10;
+        if (digit >= max) {
+            max = digit;
+        }
+    }
+    printf("The largest digit among digits split fr. num: %d \n", max);
+}
+void ex_101 (int n) {
+    // find min digit among indivi. digits split fr. num
+    int digit;
+    int min = 9;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        if (digit <= min) {
+            min = digit;
+        }
+    }
+    printf("The smallest digit among indivi. digits split fr. num: %d \n", min);
+}
+void ex_102 (int n) {
+    // find the number of max digits appearing in the num.
+    int digit, n_copy = n;
+    int max = 0, count_max = 0;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        if (digit >= max) {
+            max = digit;
+        }
+    }
+    while (n_copy > 0) {
+        digit = n_copy % 10;
+        n_copy /= 10;
+        if (digit == max) {
+            count_max += 1;
+        }
+    }
+    printf("The number of the max digit appearing in the num: %d \n", count_max);
+}
+void ex_103 (int n) {
+    //find the number of min digits appearing in num.
+    int digit, n_copy = n;
+    int min = 9, count_min = 0;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        if (digit <= min) {
+            min = digit;
+        }
+    }
+    while (n_copy > 0) {
+        digit = n_copy % 10;
+        n_copy /= 10;
+        if (min == digit) {
+            count_min += 1;
+        }
+    }
+    printf("The num of the smallest digits: %d \n", count_min);
+}// remember
+void ex_104 (int n) {
+    // check if a num is a luck num or not
+    int digit, n_copy = n;
+    bool luck_num = true;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        if (digit != 8 && digit != 6) {
+            luck_num = false;
+            break;
+        }
+    }
+    if (luck_num == true) {
+        printf("%d is lucky num \n",n_copy);
+    }
+    else {
+        printf("%d is not a lucky num \n", n_copy);
+    }
+}
+void ex_105 (int n) {
+    //print the reverse ver. of the num that has 3 digits
+    while (!(n >= 100 && n <= 999)) {
+        printf("Please enter num that has 3 digits please: ");
+        scanf("%d", &n);
+    }
+    int digit, new_num = 0, i = 100, n_copy = n;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        new_num += (digit * i);
+        i /= 10;
+    }
+    printf("the reverse version of %d: %d \n",n_copy, new_num);
+}
+void ex_106(int n) {
+    // check if all digits of num. are all odd or even or both odd and even
+    int digit, count_num = 0, count_even = 0, count_odd = 0;
+    int n_copy = n;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        count_num += 1;
+        if (digit % 2 == 0) {
+            count_even += 1;
+        }
+        else {
+            count_odd += 1;
+        }
+    }
+    if (count_even == count_num) {
+        printf("All digits of %d are all even \n",n_copy);
+    }
+    else if (count_odd == count_num) {
+        printf("All digits of %d are all odd \n", n_copy);
+    }
+    else {
+        printf("All digits of %d are both even and odd \n", n_copy);
+    }
+} // remember
+void ex_107 (int n) {
+    /* Split the number that has 3 digits into individual digits
+       Print out max digits' positions: hundreds, tens, ones
+     */
+    
+    // ask user to have to input the num that has 3 digits
+    while (n < 100 || n > 999) {
+        printf("The number must have 3 digits. Please enter again: ");
+        scanf("%d", &n);
+    }
+    
+    // split num into digit and find max
+    int digit, n_copy = n;
+    int max = 0;
+    while (n > 0) {
+        digit = n % 10;
+        n /= 10;
+        if (digit >= max) {
+            max = digit;
+        }
+    }
+    //                  find max digits' position
+    
+    int num_count = 0; // use num_count variable to mark the position of digits
+    int num_max = 0; // count the number of max digits -> make output more tidy
+    
+    /* use this array to store positions' names of max digits
+     -> make output more tidy if there are more than 1 max digits */
+    char digit_max_posi [3][100], i = 0; // i to run digit_max_posi array's positions
+    char position [3][100] = {"ones","tens","hundreds"}; //store positions' name in array
+    
+    // run loop once again to find max digits' positions = finding if max = digit
+    while (n_copy > 0) { // use n_copy instead of n b/c n now = 0
+        digit = n_copy % 10;
+        n_copy /= 10;
+        num_count += 1; // mark digits' position each time the loop run
+        if (max == digit) {
+            num_max += 1; // find number of max digits to make output look more natural
+            strcpy(digit_max_posi[i],position[num_count - 1]);
+            // use strcpy b/c user cant assign values to an array
+            i ++;
+        }
+    }
+    
+    //print output. The content of output depends on number of max digits
+    if (num_max == 1) {
+        printf("The position of digit: %s \n", digit_max_posi [i]);
+    }
+    else if (num_max == 2) {
+        printf("THe positions of digits: %s and %s \n", digit_max_posi[0],digit_max_posi[1]);
+    }
+    else {
+        printf("All digits have the same value \n");
+    }
+} // special (^.^)
+void ex_108 (int n) {
+    /* write the prog. that askin' user to input num has 3 digits
+       and output num that has digits having ascending order
+       eg: input : 291 -> output: 129 */
+    while (n < 100 || n > 999) {
+        printf("Please enter num has 3 digits: ");
+        scanf("%d", &n);
+    }
+    int n_copy = n;// define n_copy just in case
+    int digit_arr [50], i = 0;
+    while (n > 0) {
+        digit_arr [i] = n % 10;
+        n /= 10;
+        i++;
+    }
+    /*  assign digits to the positions of the array
+     -> use that to sort the digits (mark which one is bigger or smaller)
+     (easier to sort digits if there are more than 3 digits)
+     */
+    int a; //define a variable to transfer the position of digits in the array
+    for (int i = 0; i < 3; i++) { // 3 is number of digits
+        for (int j = 0; j < 3; j ++) {
+            if (digit_arr [i] > digit_arr [j]) {
+                a = digit_arr [i];
+                digit_arr [i] = digit_arr [j];
+                digit_arr [j] = a;
+            }
+        }
+    }
+    // create new num w/ reverse digits of old num
+    int new_num = 0; //define output
+    for (int k = 0; k < 3; k ++) {
+        new_num += (digit_arr [k] * pow (10,k));
+    }
+    printf("New num that has digits coming from %d put in ascending order: %d \n",n_copy, new_num);
+}// difficult
+void ex_109 (int n) {
+    //check if all digits of the number descend from left to right.
+    
+    // split num into digits and put them into array to mark their positions
+    int digit_arr [50], i = 0;
+    /* i used for mark the order of position (0th, 1st,...)
+     digit_arr is used to mark the position of every digit split from the num */
+    while (n > 0) { // split num into digits and put them into the array
+        digit_arr [i] = n % 10;
+        n /= 10;
+        i ++;
+    }
+    
+    //use the number of positions in the array to find the number of digits in the num
+    int count_digit = 0; // count_digit stands for the number of digits appearing in the num
+    count_digit = i; // i not (i - 1) because the computer check the condition first then let i++ so i will remains 1 -> no need to subtract 1 any more
+    
+    // test if the digits descend from left to right
+    bool test = true; // test true means the digits descend fr. left to right
+    for (int m = 0; m < count_digit; m++) {
+        for (int j = m; j < count_digit; j ++) {
+            if (digit_arr [m] > digit_arr [j]) {
+                test = false;
+                break;
+            }
+        }
+    }
+    if (test == false) {
+        printf("The digits of num does not descend from left to right \n");
+    }
+    else {
+        printf("The digits of num descends from  left to right \n");
+    }
+} //complex
+void list (int n) {
+    bool continue_do = true;
+    int enter_num;
+    while (continue_do == true) {
+        printf("Please choose from 1 -13 \n");
+        printf("1: exercise 97 \n");
+        printf("2: exercise 98 \n");
+        printf("3: exercise 99 \n");
+        printf("4: exercise 100 \n");
+        printf("5: exercise 101 \n");
+        printf("6: exercise 102 \n");
+        printf("7: exercise 103 \n");
+        printf("8: exercise 104 \n");
+        printf("9: exercise 105 \n");
+        printf("10: exercise 106 \n");
+        printf("11: exercise 107 \n");
+        printf("12: exercise 108 \n");
+        printf("13: exercise 109 \n");
+        printf("Else: exit program \n");
+        printf("You chose: ");
+        scanf("%d", &enter_num);
+        //printf("Number you chose: %d \n", enter_num);
+        switch (enter_num) {
+            case 1:
+              ex_97(n);
+              break;
+            case 2:
+              ex_98(n);
+              break;
+            case 3:
+              ex_99(n);
+              break;
+            case 4:
+              ex_100(n);
+              break;
+            case 5:
+              ex_101(n);
+              break;
+            case 6:
+              ex_102(n);
+              break;
+            case 7:
+              ex_103(n);
+              break;
+            case 8:
+              ex_104(n);
+              break;
+            case 9:
+              ex_105(n);
+              break;
+            case 10:
+              ex_106(n);
+              break;
+            case 11:
+              ex_107(n);
+              break;
+            case 12:
+              ex_108(n);
+              break;
+            case 13:
+              ex_109(n);
+              break;
+            default:
+              printf("Exit program \n");
+              continue_do = false;
+              break;
+        }
+    }
+}
